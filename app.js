@@ -7,3 +7,8 @@ app.get("/", (req, res) => {
         mensaje: "This is peppy, All systems Go!! "
     });
 });
+
+
+app.listen(3000, () => {
+    console.log("Servidor ejecutándose en http://localhost:3000");
+});

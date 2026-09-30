@@ -9,4 +9,5 @@ node_modules/
 *.log
 npm-debug.log*
 
-ex.txt
+
+test.js

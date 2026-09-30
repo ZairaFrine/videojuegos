@@ -23,10 +23,13 @@ router.get("/:id", async (req, res) => {
     const { id } = req.params;
 
     const [rows] = await connection.execute(
-        `SELECT *
+        `SELECT idCat AS 'ID', nmCat AS 'Nombre',
+            CASE
+                WHEN actvCat = 1 THEN 'Si'
+                ELSE 'No'
+            END AS 'Activo'
             FROM cat_categoria
-            WHERE idCat = ?
-            AND actvCat = 1`,
+            WHERE idCat = ? `,
         [id]
     );
 

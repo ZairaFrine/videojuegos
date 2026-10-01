@@ -74,7 +74,7 @@ router.put("/:id", async (req, res) => {
     );
 
     res.json({
-        mensaje: "Categoría modificada correctamente"
+        mensaje: `Categoría modificada correctamente en ${id}`
     });
 
 });
@@ -90,13 +90,13 @@ router.delete("/:id", async (req, res) => {
     const [resultado] = await connection.execute(
         `UPDATE cat_categoria
             SET actvCat = 0
-            WHERE idCat = ?
-            AND actvCat = 0`,
+            WHERE idCat = ?`,
         [id]
     );
 
     res.json({
-        mensaje: "Categoría eliminada correctamente"
+        mensaje: "Categoría eliminada correctamente",
+        idModificado: id
     });
 
 });

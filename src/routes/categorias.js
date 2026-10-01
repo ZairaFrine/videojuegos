@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
 
     const { id } = req.params;
-
+    // Prepared Statements
     const [rows] = await connection.execute(
         `SELECT idCat AS 'ID', nmCat AS 'Nombre',
             CASE
@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
                 ELSE 'No'
             END AS 'Activo'
             FROM cat_categoria
-            WHERE idCat = ? `,
+            WHERE idCat = ?`,
         [id]
     );
 

@@ -102,6 +102,29 @@ router.delete("/:id", async (req, res) => {
 });
 
 
+// Buscar en Categorias
+router.post("/buscar", async (req, res) => {
+
+    const { nombre } = req.body;
+
+    const [resultado] = await connection.execute(
+        `SELECT idCat AS 'ID', nmCat AS 'Nombre',
+            CASE
+                WHEN actvCat = 1 THEN 'Si'
+                ELSE 'No'
+            END AS 'Activo'
+            FROM cat_categoria
+            WHERE nmCat LIKE ?`,
+        [`%${nombre}%`]
+    );
+
+    res.json(resultado);
+
+})
+
+// Revivir un registro inactivo
+
+
 
 
 module.exports = router;

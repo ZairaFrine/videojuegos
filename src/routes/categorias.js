@@ -89,7 +89,7 @@ router.delete("/:id", async (req, res) => {
 
     const [resultado] = await connection.execute(
         `UPDATE cat_categoria
-            SET actvCat = 0
+            SET actvCat = b'0'
             WHERE idCat = ?`,
         [id]
     );
@@ -122,9 +122,24 @@ router.post("/buscar", async (req, res) => {
 
 })
 
-// Revivir un registro inactivo
+// Revivir un registro inactivo // Actualizar actvCat
+router.put("/activar/:id", async (req, res) => {
 
+    const { id } = req.params;
+    const { nombre } = req.body;
 
+    const [resultado] = await connection.execute(
+        `UPDATE cat_categoria
+            SET actvCat = b'1'
+            WHERE idCat = ?`,
+        [nombre, id]
+    );
+
+    res.json({
+        mensaje: `Categoría modificada correctamente en ${id}`
+    });
+
+});
 
 
 module.exports = router;
